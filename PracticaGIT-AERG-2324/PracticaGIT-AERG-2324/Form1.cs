@@ -23,17 +23,21 @@ namespace PracticaGIT_AERG_2324
             string textoTelegrama;
             char tipoTelegrama = ' ';
             int numPalabras = 0;
-            double coste;
+            //? AERG-2324.Inicializamos la variable coste
+            double coste = 0;
 
             //! Leo el telegrama
             textoTelegrama = txtTelegrama.Text;
             // telegrama urgente?
-            if (cbUrgente.Checked)
+            //? AERG-2324.cambiamos rl radio boton urgente
+            if (rbUrgente.Checked)
                 tipoTelegrama = 'u';
 
             //! Obtengo el número de palabras que forma el telegrama
             numPalabras = textoTelegrama.Length;
             //Si el telegrama es ordinario
+            //? AERG-2324.Añadimos el boton ordinario.
+            if(rbOrdinario.Checked)
             if (tipoTelegrama == 'o')
                 if (numPalabras <= 10)
                     coste = 25;
