@@ -21,31 +21,44 @@ namespace PracticaGIT_AERG_2324
         {
 //! AERG-2324.PROGRAMA DE TELEGRAMA
             string textoTelegrama;
-            char tipoTelegrama = ' ';
-            int numPalabras = 0;
-            double coste;
+            //!? AERG-2324.Añadimos el caracter 'o' a la variable tipotelegrama como valor de origen.
+            //!? AERG-2324.Si se marca el boton urgente,el valor de telegrama pasa a ser 'u'.
 
-            //! Leo el telegrama
+            char tipoTelegrama = 'o';
+            int numPalabras = 0;
+            double coste ;
+
+            //! AERG-2324.Leo el telegrama
             textoTelegrama = txtTelegrama.Text;
             // telegrama urgente?
             if (cbUrgente.Checked)
                 tipoTelegrama = 'u';
 
-            //! Obtengo el número de palabras que forma el telegrama
-            numPalabras = textoTelegrama.Length;
-            //Si el telegrama es ordinario
+            //! AERG-2324.Obtengo el número de palabras que forma el telegrama
+            //!? AERG-2324.Se añade esta funcion para que nos cuente las palabras y nos discrimine los caracteres y espacios.
+
+            numPalabras = textoTelegrama.Split(' ','.',':',';').Length;
+
+            //! AERG-2324.Si el telegrama es ordinario
+            //!? AERG-2324.Añadimos llaves a los if para que se pueda ir paso a paso por todas las lineas
             if (tipoTelegrama == 'o')
+            {
                 if (numPalabras <= 10)
-                    coste = 25;
+                    coste = 2.5;//!? AERG-2324.Corregimos el coste del telegrama ordinario de 25 a 2.5€
                 else
-                    coste = 0.5 * numPalabras;
+                    //!? AERG-2324.Cambiamos la formula del coste con el enunciado dado.
+                    coste = 2.5 + 0.5 * (numPalabras - 10);
+            }
             else
-            //! Si el telegrama es urgente
+            //! AERG-2324.Si el telegrama es urgente
+            //!? AERG-2324.Añadimos llaves a los if para que pueda ir paso a paso por todas las lineas
             if (tipoTelegrama == 'u')
+            {
                 if (numPalabras <= 10)
                     coste = 5;
                 else
                     coste = 5 + 0.75 * (numPalabras - 10);
+            }
             else
                 coste = 0;
             txtPrecio.Text = coste.ToString() + " euros";
